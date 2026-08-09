@@ -2,15 +2,34 @@ import 'dotenv/config';
 import express from 'express';
 import alumnosRoutes from './src/routes/alumno.routes.js';
 import authRoutes from './src/routes/auth.routes.js';
+import cors from 'cors';
 import { errorHandler } from './src/middleware/errorHandler.js';
 
 const app = express();
 const PORT = process.env.PORT ?? 3000;
 
+
+app.use(
+  cors({
+    origin: 'http://localhost:5173', // Reemplaza con la URL de tu frontend
+  })
+);
+
 app.use(express.json());
+
+// Endpoint de monitoreo/salud
+app.get('/health', (req, res) => {
+  res.status(200).json({
+    status: 'ok',
+    uptime: process.uptime(),
+    timestamp: new Date().toISOString(),
+  });
+});
 
 // Rutas para alumnos
 app.use('/api/alumnos', alumnosRoutes);
+
+
 
 // Rutas de autenticacion
 app.use('/api/auth', authRoutes);

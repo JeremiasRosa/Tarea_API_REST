@@ -44,7 +44,7 @@ export const updatePassword = (id, passwordHash) => {
 }
 
 
-/*//Update - Actualiza un alumno exiatente
+//Update - Actualiza un alumno exiatente
 export const updateById =(id, campos) => {
         return prisma.alumno.update({
             where: { id },
@@ -53,7 +53,7 @@ export const updateById =(id, campos) => {
 };   
     
 
-// delete -elimina un alumno por su ID
+/*// delete -elimina un alumno por su ID
 export const deleteById = (id) =>{
     return prisma.alumno.delete({
         where: { id },  
